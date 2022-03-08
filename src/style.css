@@ -1,0 +1,111 @@
+body {
+  background: rgb(72, 231, 231);
+}
+
+h1 {
+  color: #5b6069;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0;
+}
+
+button:hover hr {
+  margin-bottom: 0;
+}
+
+.change-city-button {
+  background: rgb(72, 231, 231);
+  border: 2px solid rgb(97, 83, 218);
+  border-radius: 30px;
+  display: inline;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 20px;
+  max-width: 99px;
+  padding: 10px 15px;
+  transition: 200ms ease-in-out;
+}
+
+.change-city-button:hover {
+  background: rgb(97, 83, 218);
+  color: white;
+  cursor: pointer;
+}
+
+a {
+  font-size: 12px;
+  text-decoration: none;
+}
+.search-city {
+  align-content: center;
+}
+.seven-day-forecast {
+  border: 1px solid rgb(97, 83, 218);
+  border-radius: 4px;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  border: 1px solid rgb(97, 83, 218);
+}
+.card-body {
+  text-align: center;
+}
+
+.container {
+  margin-top: 60px;
+  width: 75%;
+  max-width: 500px;
+  background: white;
+}
+
+.conditions {
+  color: rgb(83, 85, 218);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.low {
+  color: rgb(83, 85, 218);
+  font-size: 18px;
+  font-weight: 500;
+  text-align: right;
+  margin-right: 2px;
+}
+
+.high {
+  color: rgb(83, 85, 218);
+  font-size: 18px;
+  font-weight: 500;
+  text-align: left;
+  margin-left: 2px;
+}
+
+.row-day {
+  transition: 200ms ease-in-out;
+}
+
+.row-day:hover {
+  background: rgb(83, 85, 218);
+  color: white;
+}
+
+#current-date {
+  color: grey;
+  font-size: 14px;
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.current-temp {
+  color: #5b6069;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0;
+}
