@@ -67,6 +67,12 @@ function displayFahrenheit(response) {
   document.querySelector("#current-temperature").innerHTML = Math.round(
     response.data.main.temp
   );
+  document.querySelector("#high").innerHTML = Math.round(
+    response.data.main.temp_max
+  );
+  document.querySelector("#low").innerHTML = Math.round(
+    response.data.main.temp_min
+  );
 }
 
 function convertToFahrenheit(event) {
@@ -80,6 +86,12 @@ function convertToFahrenheit(event) {
 function displayCelsius(response) {
   document.querySelector("#current-temperature").innerHTML = Math.round(
     response.data.main.temp
+  );
+  document.querySelector("#high").innerHTML = Math.round(
+    response.data.main.temp_max
+  );
+  document.querySelector("#low").innerHTML = Math.round(
+    response.data.main.temp_min
   );
 }
 function convertToCelsius(event) {
