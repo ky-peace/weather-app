@@ -36,13 +36,21 @@ function displayWeatherCondition(response) {
   );
   document.querySelector("#conditions").innerHTML =
     response.data.weather[0].main;
+  document
+    .querySelector("#icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+  document
+    .querySelector("#icon")
+    .setAttribute("alt", response.data.weather[0].main);
 }
 
 function search(city) {
   let apiKey = "dd66198ca4a46c65380b73f0c31de66e";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
-  console.log(apiUrl);
 }
 
 function handleSubmit(event) {
