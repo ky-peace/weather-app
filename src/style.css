@@ -105,10 +105,11 @@ button:hover hr {
 
 #conditions {
   color: #5b6069;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 500;
   position: relative;
   left: 80px;
+  top: -8px;
 }
 
 .weather-icon {
@@ -123,18 +124,21 @@ button:hover hr {
   left: -8px;
 }
 
-.low {
+.current-high-low {
   color: #5b6069;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 500;
+  position: relative;
+  top: -8px;
+  left: -5px;
+}
+
+.low {
   text-align: right;
   margin-right: 2px;
 }
 
 .high {
-  color: #5b6069;
-  font-size: 18px;
-  font-weight: 500;
   text-align: left;
   margin-left: 2px;
 }
@@ -161,4 +165,13 @@ button:hover hr {
   font-weight: 600;
   line-height: 40px;
   margin: 0;
+}
+
+#wind-speed {
+  color: #5b6069;
+  font-size: 14px;
+  font-weight: 100;
+  position: relative;
+  left: 80px;
+  top: -8px;
 }
