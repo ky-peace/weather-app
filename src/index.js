@@ -75,7 +75,7 @@ function displayForecast() {
           ${day}
         </div>
         <div class="col forecast-emoji" align="center">
-          ❄
+          <img src = "http://openweathermap.org/img/wn/04d@2x.png" alt="" width="32"/>
         </div>
         <div class="col forecast-low-high" align="center">
           -7º / -2º
