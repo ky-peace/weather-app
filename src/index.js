@@ -53,6 +53,41 @@ function displayWeatherCondition(response) {
   celsiusMin = response.data.main.temp_min;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#weekly-forecast");
+
+  let forecastHTML = "";
+  let days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+  <div class="row align-middle mb-2 row-day">
+        <div class="col day" align="center">
+          ${day}
+        </div>
+        <div class="col forecast-emoji" align="center">
+          ❄
+        </div>
+        <div class="col forecast-low-high" align="center">
+          -7º / -2º
+        </div>
+              
+        </div>
+  `;
+  });
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function search(city) {
   let apiKey = "dd66198ca4a46c65380b73f0c31de66e";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -119,3 +154,4 @@ let fahrenheitLink = document.querySelector("#tempf-link");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 search("Toronto");
+displayForecast();
