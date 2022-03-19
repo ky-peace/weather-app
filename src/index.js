@@ -47,6 +47,10 @@ function displayWeatherCondition(response) {
   document
     .querySelector("#icon")
     .setAttribute("alt", response.data.weather[0].main);
+
+  celsiusTemperature = response.data.main.temp;
+  celsiusMax = response.data.main.temp_max;
+  celsiusMin = response.data.main.temp_min;
 }
 
 function search(city) {
@@ -73,44 +77,30 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-function displayFahrenheit(response) {
-  document.querySelector("#current-temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
-  document.querySelector("#high").innerHTML = Math.round(
-    response.data.main.temp_max
-  );
-  document.querySelector("#low").innerHTML = Math.round(
-    response.data.main.temp_min
-  );
-}
-
 function convertToFahrenheit(event) {
   event.preventDefault();
-  let city = document.getElementById("city").innerHTML;
-  let apiKey = "dd66198ca4a46c65380b73f0c31de66e";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-  axios.get(apiUrl).then(displayFahrenheit);
-}
-
-function displayCelsius(response) {
   document.querySelector("#current-temperature").innerHTML = Math.round(
-    response.data.main.temp
+    (celsiusTemperature * 9) / 5 + 32
   );
   document.querySelector("#high").innerHTML = Math.round(
-    response.data.main.temp_max
+    (celsiusMax * 9) / 5 + 32
   );
   document.querySelector("#low").innerHTML = Math.round(
-    response.data.main.temp_min
+    (celsiusMin * 9) / 5 + 32
   );
 }
+
 function convertToCelsius(event) {
   event.preventDefault();
-  let city = document.getElementById("city").innerHTML;
-  let apiKey = "dd66198ca4a46c65380b73f0c31de66e";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayCelsius);
+  document.querySelector("#current-temperature").innerHTML =
+    Math.round(celsiusTemperature);
+  document.querySelector("#high").innerHTML = Math.round(celsiusMax);
+  document.querySelector("#low").innerHTML = Math.round(celsiusMin);
 }
+
+let celsiusTemperature = null;
+let celsiusMax = null;
+let celsiusMin = null;
 
 let dateElement = document.querySelector("#current-date");
 let currentTime = new Date();
