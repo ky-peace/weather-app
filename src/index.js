@@ -23,6 +23,28 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function formatWeeklyDays(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return days[day];
+}
+
+function getWeeklyForecast(coordinates) {
+  let apiKey = "dd66198ca4a46c65380b73f0c31de66e";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=hourly,minutely&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#current-temperature").innerHTML = Math.round(
@@ -51,38 +73,39 @@ function displayWeatherCondition(response) {
   celsiusTemperature = response.data.main.temp;
   celsiusMax = response.data.main.temp_max;
   celsiusMin = response.data.main.temp_min;
+
+  getWeeklyForecast(response.data.coord);
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  let weeklyForecast = response.data.daily;
   let forecastElement = document.querySelector("#weekly-forecast");
 
   let forecastHTML = "";
-  let days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+
+  weeklyForecast.forEach(function (weeklyForecastDay, index) {
+    if (index > 0) {
+      forecastHTML =
+        forecastHTML +
+        `
   <div class="row align-middle mb-2 row-day">
         <div class="col day" align="center">
-          ${day}
+          ${formatWeeklyDays(weeklyForecastDay.dt)}
         </div>
         <div class="col forecast-emoji" align="center">
-          <img src = "http://openweathermap.org/img/wn/04d@2x.png" alt="" width="32"/>
+          <img src = "http://openweathermap.org/img/wn/${
+            weeklyForecastDay.weather[0].icon
+          }@2x.png" alt="" width="32"/>
         </div>
         <div class="col forecast-low-high" align="center">
-          -7º / -2º
+          ${Math.round(weeklyForecastDay.temp.min)}º / ${Math.round(
+          weeklyForecastDay.temp.max
+        )}º
         </div>
               
         </div>
   `;
+    }
   });
 
   forecastElement.innerHTML = forecastHTML;
@@ -154,4 +177,3 @@ let fahrenheitLink = document.querySelector("#tempf-link");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 search("Toronto");
-displayForecast();
