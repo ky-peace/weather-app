@@ -70,10 +70,6 @@ function displayWeatherCondition(response) {
     .querySelector("#icon")
     .setAttribute("alt", response.data.weather[0].main);
 
-  celsiusTemperature = response.data.main.temp;
-  celsiusMax = response.data.main.temp_max;
-  celsiusMin = response.data.main.temp_min;
-
   getWeeklyForecast(response.data.coord);
 }
 
@@ -135,31 +131,6 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  document.querySelector("#current-temperature").innerHTML = Math.round(
-    (celsiusTemperature * 9) / 5 + 32
-  );
-  document.querySelector("#high").innerHTML = Math.round(
-    (celsiusMax * 9) / 5 + 32
-  );
-  document.querySelector("#low").innerHTML = Math.round(
-    (celsiusMin * 9) / 5 + 32
-  );
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  document.querySelector("#current-temperature").innerHTML =
-    Math.round(celsiusTemperature);
-  document.querySelector("#high").innerHTML = Math.round(celsiusMax);
-  document.querySelector("#low").innerHTML = Math.round(celsiusMin);
-}
-
-let celsiusTemperature = null;
-let celsiusMax = null;
-let celsiusMin = null;
-
 let dateElement = document.querySelector("#current-date");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
@@ -169,11 +140,5 @@ searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector("#current");
 currentLocationButton.addEventListener("click", getCurrentLocation);
-
-let celsiusLink = document.querySelector("#tempc-link");
-celsiusLink.addEventListener("click", convertToCelsius);
-
-let fahrenheitLink = document.querySelector("#tempf-link");
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 search("Toronto");
